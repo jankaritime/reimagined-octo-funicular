@@ -128,3 +128,53 @@ They are the objects that form the backbone of the user’s application.
 Beans are managed by the Spring IoC container.
 They are instantiated, configured, wired and managed by a Spring IoC container
 Beans are created with the configuration metadata that the users supply to the container.Bean generation - Spring Interview Questions - !
+
+17. How configuration metadata is provided to the Spring container?
+Configuration metadata can be provided to Spring container in following ways:
+
+XML-Based configuration: In Spring Framework, the dependencies and the services needed by beans are specified in configuration files which are in XML format. These configuration files usually contain a lot of bean definitions and application specific configuration options. They generally start with a bean tag. For example:
+1
+2
+3
+<bean id="studentbean" class="org.edureka.firstSpring.StudentBean">
+ <property name="name" value="Edureka"></property>
+</bean>
+Annotation-Based configuration: Instead of using XML to describe a bean wiring, you can configure the bean into the component class itself by using annotations on the relevant class, method, or field declaration. By default, annotation wiring is not turned on in the Spring container. So, you need to enable it in your Spring configuration file before using it. For example:
+1
+2
+3
+4
+<beans>
+<context:annotation-config/>
+<!-- bean definitions go here -->
+</beans>
+Java-based configuration: The key features in Spring Framework’s new Java-configuration support are @Configuration annotated classes and @Bean annotated methods. 
+1. @Bean annotation plays the same role as the <bean/> element. 
+
+2.@Configuration classes allows to define inter-bean dependencies by simply calling other @Bean methods in the same class. 
+
+For example:
+1
+2
+3
+4
+5
+6
+7
+@Configuration
+public class StudentConfig 
+{ 
+@Bean
+public StudentBean myStudent() 
+{ return new StudentBean(); }
+}
+18. How many bean scopes are supported by Spring?
+The Spring Framework supports five scopes. They are:
+
+Singleton: This provides scope for the bean definition to single instance per Spring IoC container.
+Prototype: This provides scope for a single bean definition to have any number of object instances.
+Request: This provides scope for a bean definition to an HTTP-request. 
+Session: This provides scope for a bean definition to an HTTP-session. 
+Global-session: This provides scope for a bean definition to an Global HTTP-session. 
+The last three are available only if the users use a web-aware ApplicationContext.
+
